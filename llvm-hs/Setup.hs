@@ -171,6 +171,7 @@ main = do
 #endif
               PreProcessor {
                   platformIndependent = platformIndependent (origHsc buildInfo),
+                  ppOrdering = \_ _ -> return,
                   runPreProcessor = \inFiles outFiles verbosity -> do
                       llvmConfig <- getLLVMConfig (configFlags localBuildInfo)
                       llvmCFlags <- do

@@ -43,6 +43,8 @@ import LLVM.Internal.Metadata (getByteStringFromFFI)
 
 import qualified LLVM.AST as A hiding (GlobalVariable, Module, PointerType, type')
 import qualified LLVM.AST.Operand as A
+import qualified LLVM.AST.Operand as DIT (DITemplateParameter(name, type'))
+
 import qualified LLVM.AST.Constant as A (Constant(Int, integerBits, integerValue))
 
 import LLVM.Internal.FFI.LLVMCTypes (mdSubclassIdP)
@@ -837,8 +839,8 @@ instance EncodeM EncodeAST A.DILocalVariable (Ptr FFI.DILocalVariable) where
 
 instance EncodeM EncodeAST A.DITemplateParameter (Ptr FFI.DITemplateParameter) where
   encodeM p = do
-    name' <- encodeM (A.name (p :: A.DITemplateParameter)) :: EncodeAST (Ptr FFI.MDString)
-    ty <- encodeM (A.type' (p :: A.DITemplateParameter))
+    name' <- encodeM (DIT.name (p :: A.DITemplateParameter)) :: EncodeAST (Ptr FFI.MDString)
+    ty <- encodeM (DIT.type' (p :: A.DITemplateParameter))
     Context c <- gets encodeStateContext
     case p of
       A.DITemplateTypeParameter {} ->

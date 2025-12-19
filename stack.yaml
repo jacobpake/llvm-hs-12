@@ -1,4 +1,4 @@
-resolver: lts-20.26 # 9.2.8
+resolver: lts-21.25 # 9.4.8
 # resolver: nightly-2021-07-04  # 9.0.1
 # resolver: lts-18.1  # 8.10.4
 # resolver: lts-16.31  # 8.8.4
